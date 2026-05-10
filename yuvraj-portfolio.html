@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuvraj — Freelance Writer & Researcher</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0a0a0f;
+    color: #e8e4dc;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .blob {
+    position: fixed; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(94,60,255,0.10) 0%, transparent 70%);
+    top: -150px; right: -150px; pointer-events: none; z-index: 0;
+  }
+  .blob2 {
+    position: fixed; width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,120,80,0.06) 0%, transparent 70%);
+    bottom: -100px; left: -100px; pointer-events: none; z-index: 0;
+  }
+
+  .wrap {
+    position: relative; z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #8b7ff0; margin-bottom: 18px; font-weight: 400;
+    animation: up 0.5s ease both;
+  }
+
+  .name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(56px, 12vw, 88px);
+    line-height: 1; color: #f0ece4;
+    animation: up 0.55s 0.05s ease both;
+  }
+  .name em { font-style: italic; color: #8b7ff0; }
+
+  .roles {
+    margin: 16px 0 24px; display: flex; flex-wrap: wrap; gap: 8px;
+    animation: up 0.55s 0.1s ease both;
+  }
+  .role-tag {
+    font-size: 12px; padding: 5px 14px; border-radius: 40px;
+    background: #16142b; border: 0.5px solid #2e2a52; color: #9b94e0;
+    letter-spacing: 0.03em;
+  }
+
+  .bio {
+    font-size: 15px; color: #7a7570; line-height: 1.85;
+    border-left: 2px solid #1e1a38; padding-left: 18px;
+    max-width: 540px; animation: up 0.55s 0.15s ease both;
+  }
+
+  .fresher-banner {
+    margin: 40px 0; background: #0f0d1e;
+    border: 0.5px solid #2a2545; border-radius: 14px;
+    padding: 20px 24px; display: flex; align-items: center; gap: 16px;
+    animation: up 0.55s 0.2s ease both;
+  }
+  .fresher-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #1e1a38; border: 0.5px solid #3d3870;
+    display: flex; align-items: center; justify-content: center;
+    color: #8b7ff0; font-size: 18px; flex-shrink: 0;
+  }
+  .fresher-text strong { display: block; font-size: 14px; font-weight: 500; color: #c8c4e0; margin-bottom: 4px; }
+  .fresher-text span { font-size: 13px; color: #4e4a68; line-height: 1.6; }
+
+  .divider { height: 0.5px; background: #141220; margin: 52px 0; }
+
+  .sec-label {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #3a3658; margin-bottom: 20px; font-weight: 500;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 10px; }
+  .card {
+    background: #0f0d1e; border: 0.5px solid #1e1a38; border-radius: 12px;
+    padding: 18px; transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover { border-color: #3d3870; transform: translateY(-2px); }
+  .card-icon { font-size: 20px; color: #8b7ff0; margin-bottom: 12px; display: block; }
+  .card-title { font-size: 13px; font-weight: 500; color: #d8d4cc; margin-bottom: 5px; }
+  .card-desc { font-size: 12px; color: #45424f; line-height: 1.65; }
+
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .why-card { background: #0f0d1e; border: 0.5px solid #1e1a38; border-radius: 12px; padding: 18px 20px; }
+  .why-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: #2a2545; margin-bottom: 6px; }
+  .why-title { font-size: 13px; font-weight: 500; color: #c0bcd5; margin-bottom: 4px; }
+  .why-desc { font-size: 12px; color: #45424f; line-height: 1.65; }
+
+  .edu { display: flex; flex-direction: column; gap: 10px; }
+  .edu-row {
+    background: #0f0d1e; border: 0.5px solid #1e1a38; border-radius: 12px;
+    padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start;
+  }
+  .edu-dot {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: #1e1a38; border: 0.5px solid #3d3870;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; color: #8b7ff0; flex-shrink: 0;
+  }
+  .edu-title { font-size: 14px; font-weight: 500; color: #d8d4cc; margin-bottom: 3px; }
+  .edu-sub { font-size: 12px; color: #45424f; }
+  .badge { display: inline-block; margin-top: 8px; font-size: 10px; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; }
+  .badge-active { background: #1e2e1e; border: 0.5px solid #2d4a2d; color: #5a9a5a; }
+  .badge-done { background: #1e1a38; border: 0.5px solid #3d3870; color: #7070c0; }
+
+  .contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cpill {
+    background: #0f0d1e; border: 0.5px solid #1e1a38; border-radius: 40px;
+    padding: 10px 20px; font-size: 13px; color: #7a7570;
+    display: flex; align-items: center; gap: 8px;
+    transition: border-color 0.2s, color 0.2s;
+    cursor: pointer; text-decoration: none;
+  }
+  .cpill:hover { border-color: #8b7ff0; color: #d8d4cc; }
+  .cpill i { color: #8b7ff0; font-size: 15px; }
+
+  .email-pill {
+    background: #0f0d1e; border: 0.5px solid #2a2545; border-radius: 40px;
+    padding: 10px 20px; font-size: 13px; color: #9b94e0;
+    display: flex; align-items: center; gap: 8px;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .email-pill:hover { border-color: #8b7ff0; color: #c0bcf0; }
+  .email-pill i { color: #8b7ff0; font-size: 15px; }
+
+  .footer { margin-top: 60px; font-size: 12px; color: #2a2540; text-align: center; letter-spacing: 0.05em; }
+
+  @keyframes up {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 40px 16px 60px; }
+    .fresher-banner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="blob"></div>
+<div class="blob2"></div>
+
+<div class="wrap">
+
+  <p class="eyebrow">Freelancer · Delhi, India</p>
+  <h1 class="name">Yuv<em>raj</em></h1>
+
+  <div class="roles">
+    <span class="role-tag">Content Writing</span>
+    <span class="role-tag">Translation</span>
+    <span class="role-tag">Editing</span>
+    <span class="role-tag">Research</span>
+    <span class="role-tag">CSE Student</span>
+  </div>
+
+  <p class="bio">
+    19-year-old Computer Science undergraduate from Delhi — fresh, curious, and eager to work.
+    I bring dedication, attention to detail, and a genuine love for language to every project I take on.
+  </p>
+
+  <div class="fresher-banner">
+    <div class="fresher-icon"><i class="ti ti-seedling" aria-hidden="true"></i></div>
+    <div class="fresher-text">
+      <strong>Early in my journey — and that's a good thing</strong>
+      <span>No long track record yet, but full commitment, fast turnaround, and competitive rates. I'm here to build, learn, and deliver.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="sec-label">Services I offer</p>
+  <div class="grid">
+    <div class="card">
+      <i class="ti ti-pencil card-icon" aria-hidden="true"></i>
+      <div class="card-title">Content Writing</div>
+      <div class="card-desc">Blogs, articles, and web copy that informs and engages readers.</div>
+    </div>
+    <div class="card">
+      <i class="ti ti-language card-icon" aria-hidden="true"></i>
+      <div class="card-title">Translation</div>
+      <div class="card-desc">Translations that preserve tone, meaning, and cultural context.</div>
+    </div>
+    <div class="card">
+      <i class="ti ti-edit card-icon" aria-hidden="true"></i>
+      <div class="card-title">Editing & Proofreading</div>
+      <div class="card-desc">Polishing grammar, clarity, and flow to publication standard.</div>
+    </div>
+    <div class="card">
+      <i class="ti ti-search card-icon" aria-hidden="true"></i>
+      <div class="card-title">Research</div>
+      <div class="card-desc">Thorough, well-sourced research on any topic or niche.</div>
+    </div>
+    <div class="card">
+      <i class="ti ti-file-description card-icon" aria-hidden="true"></i>
+      <div class="card-title">Academic Writing</div>
+      <div class="card-desc">Essays, summaries, and reports crafted with care and precision.</div>
+    </div>
+    <div class="card">
+      <i class="ti ti-message-2 card-icon" aria-hidden="true"></i>
+      <div class="card-title">Social Media Copy</div>
+      <div class="card-desc">Short-form content with the right voice for the right platform.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="sec-label">Why work with me</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-title">Fast turnaround</div>
+      <div class="why-desc">Student schedule means flexibility — I can move quickly on your deadlines.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-title">Budget-friendly</div>
+      <div class="why-desc">Fresher rates — get quality work without the heavy price tag.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-title">Detail-oriented</div>
+      <div class="why-desc">I read briefs carefully and ask the right questions before I start.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="sec-label">Education</p>
+  <div class="edu">
+    <div class="edu-row">
+      <div class="edu-dot"><i class="ti ti-school" aria-hidden="true"></i></div>
+      <div>
+        <div class="edu-title">B.Tech — Computer Science & Engineering</div>
+        <div class="edu-sub">Currently pursuing undergraduate degree</div>
+        <span class="badge badge-active">Ongoing</span>
+      </div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-dot"><i class="ti ti-building" aria-hidden="true"></i></div>
+      <div>
+        <div class="edu-title">SM Arya Public School</div>
+        <div class="edu-sub">Punjabi Bagh, Delhi — Senior Secondary</div>
+        <span class="badge badge-done">Completed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="sec-label">Let's connect</p>
+  <div class="contact-row">
+    <a class="email-pill" href="mailto:yuvrajbhadoriya722@gmail.com">
+      <i class="ti ti-mail" aria-hidden="true"></i>
+      yuvrajbhadoriya722@gmail.com
+    </a>
+    <a class="cpill" href="#"><i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn</a>
+    <a class="cpill" href="#"><i class="ti ti-brand-instagram" aria-hidden="true"></i> Instagram</a>
+  </div>
+
+  <p class="footer">Yuvraj · Delhi, India · 2026</p>
+
+</div>
+</body>
+</html>
